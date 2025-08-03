@@ -44,7 +44,8 @@ export class MemStorage implements IStorage {
     const submission: ContactSubmission = { 
       ...insertSubmission, 
       id, 
-      createdAt: new Date() 
+      createdAt: new Date(),
+      company: insertSubmission.company ?? null
     };
     this.contactSubmissions.set(id, submission);
     return submission;
@@ -61,7 +62,7 @@ export class MemStorage implements IStorage {
     const subscription: NewsletterSubscription = { 
       ...insertSubscription, 
       id, 
-      createdAt: new Date() 
+      createdAt: new Date()
     };
     this.newsletterSubscriptions.set(id, subscription);
     return subscription;
