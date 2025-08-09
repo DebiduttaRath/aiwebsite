@@ -69,7 +69,7 @@ export default function Navigation() {
                 />
               </div>
               <div className="text-2xl font-bold gradient-text">
-                Earthminds.AI
+                earthminds.ai
               </div>
             </div>
           </div>

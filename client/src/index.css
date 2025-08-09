@@ -97,3 +97,73 @@
     }
   }
 }
+
+/* Floating animation (for all icons) */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Rocket pop animation */
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+.group:hover .group-hover\:animate-pop {
+  animation: pop 0.4s ease-out;
+}
+
+/* Robot head animation */
+@keyframes headBobble {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(5deg); }
+  75% { transform: rotate(-5deg); }
+}
+.group:hover .group-hover\:animate-head-bobble {
+  animation: headBobble 0.8s ease;
+}
+
+/* Gear spin animations */
+@keyframes slow-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes fast-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-slow-spin {
+  animation: slow-spin 8s linear infinite;
+}
+.group:hover .group-hover\:animate-fast-spin {
+  animation: fast-spin 2s linear infinite;
+}
+
+/* Chain link animation */
+@keyframes chainReaction {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+.group:hover .group-hover\:animate-chain-reaction {
+  animation: chainReaction 0.4s ease 2;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion) {
+  .animate-float,
+  .animate-slow-spin,
+  .group-hover\:animate-pop,
+  .group-hover\:animate-head-bobble,
+  .group-hover\:animate-fast-spin,
+  .group-hover\:animate-chain-reaction {
+    animation: none !important;
+  }
+  .group:hover .group-hover\:translate-y-1 {
+    transform: none;
+  }
+}

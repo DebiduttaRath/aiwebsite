@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -11,6 +11,15 @@ import { Bot } from "lucide-react";
 
 export default function AiAssistant() {
   const [open, setOpen] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  // Combined approach using URL params and CSS overlay
+  useEffect(() => {
+    if (!open || !iframeRef.current) return;
+
+    // Refresh iframe with all known hiding parameters when dialog opens
+    iframeRef.current.src = `https://earthminds-ai-assistant.streamlit.app/?embed=true&embed_options=disable_scrolling=true&hide_footer=true&embedded=true&hide_streamlit_footer=true#noFooter=1&hideFooter=1`;
+  }, [open]);
 
   return (
     <div className="fixed bottom-8 right-8 z-50">
@@ -38,31 +47,40 @@ export default function AiAssistant() {
         </DialogTrigger>
         <DialogContent
           className="
-          w-[90vw] 
-          h-[90vh]
-          max-w-[1400px]
-          max-h-[900px]
-          p-0
-          overflow-hidden
-        "
+            w-[90vw] 
+            h-[90vh]
+            max-w-[1400px]
+            max-h-[900px]
+            p-0
+            overflow-hidden
+          "
         >
           <div className="flex flex-col h-full">
             <DialogHeader className="p-4 border-b">
               <DialogTitle>Earthminds AI Assistant</DialogTitle>
             </DialogHeader>
+
+            {/* Improved iframe container with overlay */}
             <div className="flex-1 relative">
-              <iframe
-                src="https://earthminds-ai-assistant.streamlit.app/?embed=true&embed_options=show_colored_line&hide_streamlit_footer=true"
+              <div className="absolute inset-0 overflow-hidden">
+                <iframe
+                  ref={iframeRef}
+                  src="https://earthminds-ai-assistant.streamlit.app/?embed=true"
+                  className="absolute top-0 left-0 w-full h-full border-none"
+                  title="Earthminds AI Assistant"
+                  loading="eager"
+                  allow="camera;microphone"
+                />
+              </div>
+
+              {/* Safe overlay that only covers the footer area */}
+              <div
                 className="
-                  absolute
-                  top-0
-                  left-0
-                  w-full
-                  h-full
-                  border-none
-                "
-                title="Earthminds AI Assistant"
-                loading="eager"
+                absolute bottom-0 left-0 right-0 
+                h-[40px] bg-background z-10 
+                pointer-events-none
+                bg-gradient-to-t from-background to-transparent
+              "
               />
             </div>
           </div>
