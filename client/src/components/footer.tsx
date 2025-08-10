@@ -8,17 +8,17 @@ import { apiRequest } from "@/lib/queryClient";
 const teamMembers = [
   {
     id: 1,
-    name: "Himansu Sekhar Pradhan",
-    role: "Co Founder",
-    imageUrl: "/team/himanshu_pradhan.jpeg",
-    linkedinURL: "https://www.linkedin.com/in/himansu-pradhan-6b151472/",
-  },
-  {
-    id: 2,
     name: "Aswini Kumar Swain",
     role: "Co Founder",
     imageUrl: "/team/aswini_swain.jpeg",
     linkedinURL: "https://www.linkedin.com/in/aswini09/",
+  },
+  {
+    id: 2,
+    name: "Himansu Sekhar Pradhan",
+    role: "Co Founder",
+    imageUrl: "/team/himanshu_pradhan.jpeg",
+    linkedinURL: "https://www.linkedin.com/in/himansu-pradhan-6b151472/",
   },
 ];
 

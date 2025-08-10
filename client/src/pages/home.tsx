@@ -20,8 +20,8 @@ export default function Home() {
       <EMAssistant />
       <About />
       <Services />
-      <FocusAreas />
       <Videos />
+      <FocusAreas />
       <Industries />
       <TechStack />
       <Contact />
