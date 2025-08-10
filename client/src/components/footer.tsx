@@ -66,9 +66,7 @@ export default function Footer() {
     <footer className="bg-slate-900 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Column 1: Company Info + Team */}
           <div className="md:col-span-2 space-y-8">
-            {/* Company Info */}
             <div>
               <div className="text-2xl font-bold gradient-text mb-4">
                 earthminds.ai
@@ -92,12 +90,11 @@ export default function Footer() {
                         src={member.imageUrl}
                         alt={member.name}
                         className="object-cover w-full h-full"
-                        // style={{ width: 20, height: 20 }}
                       />
                     </div>
                     <div>
                       <p className="text-white text-sm font-medium line-clamp-1">
-                        {member.name.split(" ")[0]}
+                        {member.name}
                       </p>
                       <p className="text-slate-400 text-xs">{member.role}</p>
                       <a href={member.linkedinURL}>
