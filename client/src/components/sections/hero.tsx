@@ -1,4 +1,4 @@
-import heroVideo from "../../assets/hero_video.mp4";
+import bgVideo from "../../assets/hero_bg_video.mp4";
 
 export default function Hero() {
   const scrollToSection = (sectionId: string) => {
@@ -68,7 +68,7 @@ export default function Hero() {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source src={heroVideo} type="video/mp4" />
+          <source src={bgVideo} type="video/mp4" />
           <img src="/fallback-image.jpg" alt="Background" />
         </video>
         <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>

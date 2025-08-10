@@ -7,22 +7,19 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Bot } from "lucide-react";
+import { ScanSearch } from "lucide-react";
 
-export default function AiAssistant() {
+export default function EMLens() {
   const [open, setOpen] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  // Combined approach using URL params and CSS overlay
   useEffect(() => {
     if (!open || !iframeRef.current) return;
-
-    // Refresh iframe with all known hiding parameters when dialog opens
-    iframeRef.current.src = `https://earthminds-ai-assistant.streamlit.app/?embed=true&embed_options=disable_scrolling=true&hide_footer=true&embedded=true&hide_streamlit_footer=true#noFooter=1&hideFooter=1`;
+    iframeRef.current.src = `https://earthmind-lens.streamlit.app/?embed=true&embed_options=disable_scrolling=true&hide_footer=true&embedded=true&hide_streamlit_footer=true#noFooter=1&hideFooter=1`;
   }, [open]);
 
   return (
-    <div className="fixed bottom-8 right-8 z-50">
+    <div className="fixed bottom-8 left-8 z-50">
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button
@@ -39,9 +36,13 @@ export default function AiAssistant() {
               hover:scale-110
               hover:animate-none
               group
+              flex items-center justify-center
             "
           >
-            <Bot className="h-10 w-10 transition-transform group-hover:rotate-12" />
+            <ScanSearch
+              style={{ width: "2.5rem", height: "2.5rem" }}
+              className="transition-transform group-hover:rotate-12"
+            />
             <span className="sr-only">AI Assistant</span>
           </Button>
         </DialogTrigger>
@@ -57,23 +58,23 @@ export default function AiAssistant() {
         >
           <div className="flex flex-col h-full">
             <DialogHeader className="p-4 border-b">
-              <DialogTitle>Earthminds AI Assistant</DialogTitle>
+              <DialogTitle>
+                🔍 <span className="gradient-text">earthminds</span> Lens
+              </DialogTitle>
             </DialogHeader>
 
-            {/* Improved iframe container with overlay */}
             <div className="flex-1 relative">
               <div className="absolute inset-0 overflow-hidden">
                 <iframe
                   ref={iframeRef}
-                  src="https://earthminds-ai-assistant.streamlit.app/?embed=true"
+                  src="https://earthmind-lens.streamlit.app/?embed=true"
                   className="absolute top-0 left-0 w-full h-full border-none"
-                  title="Earthminds AI Assistant"
+                  title="earthminds Lens"
                   loading="eager"
                   allow="camera;microphone"
                 />
               </div>
 
-              {/* Safe overlay that only covers the footer area */}
               <div
                 className="
                 absolute bottom-0 left-0 right-0 

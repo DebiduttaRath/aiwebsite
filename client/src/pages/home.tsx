@@ -7,17 +7,21 @@ import Industries from "@/components/sections/industries";
 import TechStack from "@/components/sections/tech-stack";
 import Contact from "@/components/sections/contact";
 import Footer from "@/components/footer";
-import AiAssistant from "@/components/sections/ai-assistant";
+import EMAssistant from "@/components/sections/em-assistant";
+import Videos from "@/components/sections/video-section/videos";
+import EMLens from "@/components/sections/em-lens";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-slate-50">
       <Navigation />
       <Hero />
-      <AiAssistant />
+      <EMLens />
+      <EMAssistant />
       <About />
       <Services />
       <FocusAreas />
+      <Videos />
       <Industries />
       <TechStack />
       <Contact />
