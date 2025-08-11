@@ -16,6 +16,7 @@ export default function Navigation() {
         "industries",
         "tech",
         "contact",
+        "video-odyssey",
       ];
       const scrollPosition = window.scrollY + 100;
 

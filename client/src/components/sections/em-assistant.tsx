@@ -12,7 +12,7 @@ import { X, Bot } from "lucide-react";
 
 export default function EMAssistant() {
   const [open, setOpen] = useState(false);
-  const [remainingTime, setRemainingTime] = useState(60);
+  const [remainingTime, setRemainingTime] = useState(100);
   const [hasExpired, setHasExpired] = useState(false);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);

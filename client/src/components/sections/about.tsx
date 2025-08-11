@@ -6,6 +6,7 @@ export default function About() {
       role: "Co Founder",
       imageUrl: "/team/aswini_swain.jpeg",
       linkedinURL: "https://www.linkedin.com/in/aswini09/",
+      email: "", // Add email to all team
     },
     {
       id: 2,

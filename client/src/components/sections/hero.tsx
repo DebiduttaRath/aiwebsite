@@ -16,7 +16,7 @@ export default function Hero() {
     },
     {
       text: "See Our Work",
-      onClick: "services",
+      onClick: "video-odyssey",
       className: "border-white hover:bg-white hover:text-slate-900 text-white",
     },
     {
