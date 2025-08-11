@@ -20,7 +20,7 @@ const socials = [
   },
   {
     name: "LinkedIn",
-    url: "https://linkedin.com/company/EarthMindsAI",
+    url: "https://www.linkedin.com/in/earth-minds-ai/",
     svg: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

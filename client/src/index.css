@@ -208,3 +208,13 @@
 .animate-float { animation: float 6s ease-in-out infinite; }
 .animate-orbit-ring { animation: orbit-ring 8s ease-in-out infinite; }
 .animate-orbit-ring-2 { animation: orbit-ring-2 10s ease-in-out infinite; }
+
+@keyframes pulse-once {
+  0% { transform: scale(1); background-color: #f3f4f6; }
+  50% { transform: scale(1.15); background-color: #fde68a; }
+  100% { transform: scale(1); background-color: #f3f4f6; }
+}
+
+.animate-pulse-once {
+  animation: pulse-once 0.4s ease-in-out;
+}

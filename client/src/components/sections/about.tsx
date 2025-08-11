@@ -19,7 +19,7 @@ export default function About() {
       name: "Want to join our team",
       role: "Earthminder",
       imageUrl: "/logo.png",
-      linkedinURL: "/careers",
+      linkedinURL: "https://www.linkedin.com/in/earth-minds-ai/",
     },
   ];
 

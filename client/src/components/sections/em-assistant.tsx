@@ -6,12 +6,54 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from "@/components/ui/dialog";
-import { Bot } from "lucide-react";
+import { X, Bot } from "lucide-react";
 
 export default function EMAssistant() {
   const [open, setOpen] = useState(false);
+  const [remainingTime, setRemainingTime] = useState(60);
+  const [hasExpired, setHasExpired] = useState(false);
+
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    // Restore previous remaining time & expired state
+    const storedTime = localStorage.getItem("emAssistantRemaining");
+    const expiredFlag = localStorage.getItem("emAssistantExpired");
+
+    if (expiredFlag === "true") {
+      setHasExpired(true);
+    }
+    if (storedTime !== null) {
+      const timeLeft = parseInt(storedTime, 10);
+      setRemainingTime(timeLeft > 0 ? timeLeft : 0);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (open && !hasExpired) {
+      timerRef.current = setInterval(() => {
+        setRemainingTime((prev) => {
+          const nextTime = prev - 1;
+          localStorage.setItem("emAssistantRemaining", nextTime.toString());
+
+          if (nextTime <= 0) {
+            clearInterval(timerRef.current!);
+            setHasExpired(true);
+            localStorage.setItem("emAssistantExpired", "true");
+            return 0;
+          }
+          return nextTime;
+        });
+      }, 1000);
+    } else {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    }
+  }, [open, hasExpired]);
 
   useEffect(() => {
     if (!open || !iframeRef.current) return;
@@ -54,10 +96,11 @@ export default function EMAssistant() {
             max-h-[900px]
             p-0
             overflow-hidden
+            [&>button.absolute]:hidden
           "
         >
           <div className="flex flex-col h-full">
-            <DialogHeader className="p-4 border-b">
+            <DialogHeader className="flex flex-row items-center justify-between px-6 py-4 border-b">
               <DialogTitle
                 style={{ display: "flex", alignItems: "center", gap: 5 }}
               >
@@ -69,18 +112,39 @@ export default function EMAssistant() {
                 />
                 <span className="gradient-text">EarthMinds </span>AI Assistant
               </DialogTitle>
+              <div className="flex items-center gap-4">
+                {hasExpired ? (
+                  <p className="text-sm font-semibold text-red-500 whitespace-nowrap">
+                    ⏳ Maximum time usage reached
+                  </p>
+                ) : (
+                  <div
+                    key={remainingTime}
+                    className="text-sm font-bold px-3 py-1 rounded-full bg-gray-100 text-gray-800 shadow-sm animate-pulse-once"
+                  >
+                    ⏳ {remainingTime}s
+                  </div>
+                )}
+
+                {/* Close Button */}
+                <DialogClose className="p-2 rounded-md hover:bg-gray-200 transition-colors">
+                  <X className="h-4 w-4" />
+                </DialogClose>
+              </div>
             </DialogHeader>
 
             <div className="flex-1 relative">
               <div className="absolute inset-0 overflow-hidden">
-                <iframe
-                  ref={iframeRef}
-                  src="https://earthminds-ai-assistant.streamlit.app/?embed=true"
-                  className="absolute top-0 left-0 w-full h-full border-none"
-                  title="EarthMinds AI Assistant"
-                  loading="eager"
-                  allow="camera;microphone"
-                />
+                {!hasExpired && (
+                  <iframe
+                    ref={iframeRef}
+                    src="https://earthminds-ai-assistant.streamlit.app/?embed=true"
+                    className="absolute top-0 left-0 w-full h-full border-none"
+                    title="EarthMinds AI Assistant"
+                    loading="eager"
+                    allow="camera;microphone"
+                  />
+                )}
               </div>
 
               <div
