@@ -36,7 +36,7 @@ export default function VideoCard({ video, onVideoSelect }: VideoCardProps) {
 
       <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
         <h3 className="text-lg font-semibold text-white">
-          <span className="gradient-text">earthminds </span>
+          <span className="gradient-text">EarthMinds </span>
           {video.title}
         </h3>
         {video.description && (

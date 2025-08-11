@@ -1,24 +1,35 @@
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Send } from "lucide-react";
+import { Send, Facebook, BadgeX, Linkedin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-// import Image from "next/image";
 
-const teamMembers = [
+const socials = [
   {
-    id: 1,
-    name: "Aswini Kumar Swain",
-    role: "Co Founder",
-    imageUrl: "/team/aswini_swain.jpeg",
-    linkedinURL: "https://www.linkedin.com/in/aswini09/",
+    name: "X",
+    url: "https://x.com/EarthMindsAI",
+    svg: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1200 1227"
+        className="w-5 h-5 fill-current"
+      >
+        <path d="M714 514L1160 0H1020L672 404 356 0H0l468 579L0 1227h140l374-434 336 434h356L714 514z" />
+      </svg>
+    ),
   },
   {
-    id: 2,
-    name: "Himansu Sekhar Pradhan",
-    role: "Co Founder",
-    imageUrl: "/team/himanshu_pradhan.jpeg",
-    linkedinURL: "https://www.linkedin.com/in/himansu-pradhan-6b151472/",
+    name: "LinkedIn",
+    url: "https://linkedin.com/company/EarthMindsAI",
+    svg: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 448 512"
+        className="w-5 h-5 fill-current"
+      >
+        <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.07 108.1 0 83 0 53.4a53.79 53.79 0 01107.58 0c0 29.6-24.07 54.7-53.79 54.7zM447.9 448h-92.4V302.4c0-34.7-12.4-58.4-43.2-58.4-23.5 0-37.6 15.8-43.8 31.1-2.2 5.3-2.8 12.6-2.8 20v153H173V148.9h88.7v40.8h1.3c12.4-19.7 34.6-47.8 84.6-47.8 61.8 0 108.3 40.4 108.3 127.2V448z" />
+      </svg>
+    ),
   },
 ];
 
@@ -69,55 +80,28 @@ export default function Footer() {
           <div className="md:col-span-2 space-y-8">
             <div>
               <div className="text-2xl font-bold gradient-text mb-4">
-                earthminds.ai
+                EarthMinds.ai
               </div>
               <p className="text-slate-400">
                 Turning complex ideas into intelligent, scalable solutions.
               </p>
-            </div>
-
-            {/* Our Team - Compact horizontal layout */}
-            <div>
-              <h3 className="text-white font-semibold mb-4">Our Team</h3>
-              <div className="flex flex-wrap gap-4">
-                {teamMembers.map((member) => (
-                  <div
-                    key={member.id}
-                    className="flex items-center gap-3 min-w-[160px]"
+              <div className="flex space-x-4 mt-4">
+                {socials.map(({ name, url, svg }) => (
+                  <a
+                    key={name}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={name}
+                    className="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-white transition-colors"
                   >
-                    <div className="w-20 h-20 overflow-hidden rounded-full border border-slate-700">
-                      <img
-                        src={member.imageUrl}
-                        alt={member.name}
-                        className="object-cover w-full h-full"
-                      />
-                    </div>
-                    <div>
-                      <p className="text-white text-sm font-medium line-clamp-1">
-                        {member.name}
-                      </p>
-                      <p className="text-slate-400 text-xs">{member.role}</p>
-                      <a href={member.linkedinURL}>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="18"
-                          height="18"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            fill="#0A66C2"
-                            d="M20.452 20.452h-3.554v-5.569c0-1.327-.027-3.037-1.852-3.037-1.853 0-2.137 1.445-2.137 2.939v5.667h-3.554V9h3.414v1.561h.049c.476-.9 1.637-1.852 3.367-1.852c3.6 0 4.266 2.369 4.266 5.455v6.288zM5.337 7.433a2.062 2.062 0 1 1 0-4.124a2.062 2.062 0 0 1 0 4.124zM6.967 20.452H3.707V9h3.26v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.271V1.729C24 .774 23.2 0 22.225 0z"
-                          />
-                        </svg>
-                      </a>
-                    </div>
-                  </div>
+                    {svg}
+                  </a>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Column 2: Quick Links */}
           <div>
             <h3 className="text-white font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
@@ -134,7 +118,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Newsletter */}
           <div>
             <h3 className="text-white font-semibold mb-4">Newsletter</h3>
             <p className="text-slate-400 mb-4">
@@ -161,7 +144,7 @@ export default function Footer() {
 
         <div className="border-t border-slate-800 mt-8 pt-8 text-center text-slate-400">
           <p>
-            &copy; {new Date().getFullYear()} earthminds.ai. All rights
+            &copy; {new Date().getFullYear()} EarthMinds.ai. All rights
             reserved.
           </p>
         </div>

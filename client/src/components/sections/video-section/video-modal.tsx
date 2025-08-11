@@ -55,7 +55,7 @@ export default function VideoModal({ video, onClose }: VideoModalProps) {
 
         <div className="mt-4 text-white">
           <h3 className="text-xl font-bold">
-            <span className="gradient-text">earthminds </span>
+            <span className="gradient-text">EarthMinds </span>
             {video.title}
           </h3>
           {video.description && <p className="mt-2">{video.description}</p>}

@@ -67,7 +67,7 @@ export default function EMAssistant() {
                   className="h-8 w-8 object-contain"
                   style={{ borderRadius: 50 }}
                 />
-                <span className="gradient-text">earthminds </span>AI Assistant
+                <span className="gradient-text">EarthMinds </span>AI Assistant
               </DialogTitle>
             </DialogHeader>
 
@@ -77,7 +77,7 @@ export default function EMAssistant() {
                   ref={iframeRef}
                   src="https://earthminds-ai-assistant.streamlit.app/?embed=true"
                   className="absolute top-0 left-0 w-full h-full border-none"
-                  title="earthminds AI Assistant"
+                  title="EarthMinds AI Assistant"
                   loading="eager"
                   allow="camera;microphone"
                 />

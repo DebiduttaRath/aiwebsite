@@ -59,7 +59,7 @@ export default function EMLens() {
           <div className="flex flex-col h-full">
             <DialogHeader className="p-4 border-b">
               <DialogTitle>
-                🔍 <span className="gradient-text">earthminds</span> Lens
+                🔍 <span className="gradient-text">EarthMinds</span> Lens
               </DialogTitle>
             </DialogHeader>
 
@@ -69,7 +69,7 @@ export default function EMLens() {
                   ref={iframeRef}
                   src="https://earthmind-lens.streamlit.app/?embed=true"
                   className="absolute top-0 left-0 w-full h-full border-none"
-                  title="earthminds Lens"
+                  title="EarthMinds Lens"
                   loading="eager"
                   allow="camera;microphone"
                 />

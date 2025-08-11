@@ -61,7 +61,7 @@ export default function Videos() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            <span className="gradient-text">earthminds</span> Odyssey
+            <span className="gradient-text">EarthMinds</span> Odyssey
           </h2>
           <p className="text-xl text-white max-w-3xl mx-auto">
             A journey through technology and ideas
