@@ -70,13 +70,50 @@
     opacity: 0.1;
   }
   
-  .gradient-text {
+  .gradient-text-og {
     background: linear-gradient(45deg, hsl(207, 90%, 54%), hsl(189, 98%, 45%), hsl(249, 72%, 66%));
     background-size: 400% 400%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: gradient 8s ease infinite;
+  }
+
+  .gradient-text {
+    background: linear-gradient(
+      45deg,
+      #FF671F,
+      #FF8B52,
+      #FFF,
+      #3B9D6B,
+      #046A38,
+      #3B9D6B,
+      #FFF,
+      #FF8B52,
+      #FF671F
+    );
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-flow 12s ease infinite;
+  }
+
+  .gradient-fab {
+    background: linear-gradient(
+      45deg,
+      #FF671F,
+      #FF8B52,
+      #FFF,
+      #3B9D6B,
+      #046A38,
+      #3B9D6B,
+      #FFF,
+      #FF8B52,
+      #FF671F
+    );
+    background-size: 400% 400%;
+    animation: gradient-flow 12s ease infinite;
   }
 
   @keyframes float {
@@ -94,6 +131,15 @@
     }
     50% { 
       background-position: 100% 50%; 
+    }
+  }
+
+  @keyframes gradient-flow {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 400% 50%;
     }
   }
 }
@@ -217,4 +263,18 @@
 
 .animate-pulse-once {
   animation: pulse-once 0.4s ease-in-out;
+}
+
+.em_hero_btn_1 {
+  background-color: #FF671F;
+  border-color: #FF671F;
+}
+
+.em_hero_btn_2 {
+  color: #06038D;
+}
+
+.em_hero_btn_3 {
+  background-color: #046A38;
+  border-color: #046A38;
 }

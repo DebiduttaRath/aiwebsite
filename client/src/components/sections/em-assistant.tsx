@@ -71,8 +71,8 @@ export default function EMAssistant() {
               h-20 w-20 p-0
               shadow-xl
               hover:shadow-2xl
-              bg-gradient-to-br from-blue-600 to-purple-600
-              hover:from-blue-700 hover:to-purple-700
+              bg-gradient-to-br from-[#FF671F] to-[#046A38]
+              hover:from-[#FF671F] hover:to-[#046A38]
               transition-all
               duration-300
               hover:scale-110
@@ -83,7 +83,7 @@ export default function EMAssistant() {
           >
             <Bot
               style={{ width: "2.5rem", height: "2.5rem" }}
-              className="transition-transform group-hover:rotate-12"
+              className="transition-transform group-hover:rotate-12 text-white"
             />
             <span className="sr-only">AI Assistant</span>
           </Button>

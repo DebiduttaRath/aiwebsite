@@ -3,10 +3,10 @@ export default function About() {
     {
       id: 1,
       name: "Aswini Kumar Swain",
-      role: "Co Founder",
+      role: "CEO, Co Founder",
       imageUrl: "/team/aswini_swain.jpeg",
       linkedinURL: "https://www.linkedin.com/in/aswini09/",
-      email: "", // Add email to all team
+      email: "aswini@earthminds.ai",
     },
     {
       id: 2,
@@ -14,6 +14,7 @@ export default function About() {
       role: "Co Founder",
       imageUrl: "/team/himanshu_pradhan.jpeg",
       linkedinURL: "https://www.linkedin.com/in/himansu-pradhan-6b151472/",
+      email: "himansupradhan@earthminds.ai",
     },
     {
       id: 3,
@@ -21,6 +22,7 @@ export default function About() {
       role: "Earthminder",
       imageUrl: "/logo.png",
       linkedinURL: "https://www.linkedin.com/in/earth-minds-ai/",
+      email: "Discover the AI potential in you",
     },
   ];
 
@@ -75,39 +77,40 @@ export default function About() {
             {teamMembers.map((member, index) => (
               <div
                 key={index}
-                className="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-white shadow-sm hover:shadow-md transition-all"
+                className="backdrop-blur-sm rounded-xl p-6 border border-white shadow-sm hover:shadow-md transition-all bg-gradient-to-br from-[#FF671F] to-[#046A38] flex flex-col h-full"
               >
-                <div className="flex flex-col items-center text-center">
+                <div className="flex flex-col items-center text-center flex-grow">
                   <img
                     className="h-24 w-24 rounded-full object-cover border-4 border-white shadow-md mb-4"
                     src={member.imageUrl}
                     alt={member.name}
                   />
-                  <h3 className="text-lg font-bold text-slate-900">
+                  <h3 className="text-lg font-bold text-white">
                     {member.name}
                   </h3>
-                  <p className="text-slate-600 text-sm mt-1 mb-3">
-                    {member.role}
-                  </p>
-                  <a
-                    href={member.linkedinURL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-amber-600 hover:text-amber-700 transition-colors"
-                    aria-label={`${member.name}'s LinkedIn`}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
+                  <p className="text-white text-sm mt-1">{member.role}</p>
+                  <p className="text-white text-sm mt-1 mb-5">{member.email}</p>
+                  <div className="mt-auto">
+                    <a
+                      href={member.linkedinURL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-amber-600 hover:text-amber-700 transition-colors"
+                      aria-label={`${member.name}'s LinkedIn`}
                     >
-                      <path
-                        fill="#0A66C2"
-                        d="M20.452 20.452h-3.554v-5.569c0-1.327-.027-3.037-1.852-3.037-1.853 0-2.137 1.445-2.137 2.939v5.667h-3.554V9h3.414v1.561h.049c.476-.9 1.637-1.852 3.367-1.852c3.6 0 4.266 2.369 4.266 5.455v6.288zM5.337 7.433a2.062 2.062 0 1 1 0-4.124a2.062 2.062 0 0 1 0 4.124zM6.967 20.452H3.707V9h3.26v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.271V1.729C24 .774 23.2 0 22.225 0z"
-                      />
-                    </svg>
-                  </a>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          fill="#FFFFFF"
+                          d="M20.452 20.452h-3.554v-5.569c0-1.327-.027-3.037-1.852-3.037-1.853 0-2.137 1.445-2.137 2.939v5.667h-3.554V9h3.414v1.561h.049c.476-.9 1.637-1.852 3.367-1.852c3.6 0 4.266 2.369 4.266 5.455v6.288zM5.337 7.433a2.062 2.062 0 1 1 0-4.124a2.062 2.062 0 0 1 0 4.124zM6.967 20.452H3.707V9h3.26v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.271V1.729C24 .774 23.2 0 22.225 0z"
+                        />
+                      </svg>
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}

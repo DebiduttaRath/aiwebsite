@@ -12,18 +12,21 @@ export default function Hero() {
     {
       text: "Build With Us",
       onClick: "contact",
-      className: "bg-blue-600 hover:bg-blue-700 text-white border-transparent",
+      className: "em_hero_btn_1 text-white",
+      // className: "bg-blue-600 hover:bg-blue-700 text-white border-transparent",
     },
     {
       text: "See Our Work",
       onClick: "video-odyssey",
-      className: "border-white hover:bg-white hover:text-slate-900 text-white",
+      className: "em_hero_btn_2 border-white bg-white",
+      // className: "border-white hover:bg-white hover:text-slate-900 text-white",
     },
     {
       text: "Talk to an Expert",
       onClick: "contact",
-      className:
-        "border-cyan-400 hover:bg-cyan-400 hover:text-slate-900 text-cyan-400",
+      className: "em_hero_btn_3 text-white",
+      // className:
+      // "border-cyan-400 hover:bg-cyan-400 hover:text-slate-900 text-cyan-400",
     },
   ];
 

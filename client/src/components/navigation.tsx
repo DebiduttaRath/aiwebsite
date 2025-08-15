@@ -101,8 +101,18 @@ export default function Navigation() {
                   }}
                 ></div>
               </div>
-              <div className="text-2xl font-bold gradient-text">
-                EarthMinds.ai
+              <div className="flex items-center">
+                <div className="text-2xl font-bold gradient-text">
+                  EarthMinds.ai
+                </div>
+                {/* Added GIF next to the brand name */}
+                <div className="ml-4 h-12 w-12 relative">
+                  <img
+                    src="/indian_flag.gif" // Replace with your actual GIF path
+                    alt="Animated icon"
+                    className="h-full w-full object-contain"
+                  />
+                </div>
               </div>
             </div>
           </div>
