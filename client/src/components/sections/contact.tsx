@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
+import { submitContactForm } from "@/lib/api";
 
 const contactFormSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -42,21 +43,19 @@ export default function Contact() {
   });
 
   const contactMutation = useMutation({
-    mutationFn: async (data: ContactFormData) => {
-      return apiRequest("POST", "/api/contact", data);
-    },
+    mutationFn: submitContactForm,
     onSuccess: () => {
       toast({
         title: "Message sent!",
         description: "We'll get back to you within 24 hours.",
       });
       form.reset();
-      queryClient.invalidateQueries({ queryKey: ["/api", "contact"] });
     },
-    onError: () => {
+    onError: (error: Error) => {
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again.",
+        description:
+          error.message || "Failed to send message. Please try again.",
         variant: "destructive",
       });
     },
