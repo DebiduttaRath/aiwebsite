@@ -70,7 +70,7 @@
     opacity: 0.1;
   }
   
-  .gradient-text-og {
+  .gradient-text {
     background: linear-gradient(45deg, hsl(207, 90%, 54%), hsl(189, 98%, 45%), hsl(249, 72%, 66%));
     background-size: 400% 400%;
     -webkit-background-clip: text;
@@ -79,7 +79,7 @@
     animation: gradient 8s ease infinite;
   }
 
-  .gradient-text {
+  /* .gradient-text {
     background: linear-gradient(
       45deg,
       #FF671F,
@@ -114,7 +114,7 @@
     );
     background-size: 400% 400%;
     animation: gradient-flow 12s ease infinite;
-  }
+  } */
 
   @keyframes float {
     0%, 100% { 
@@ -134,14 +134,14 @@
     }
   }
 
-  @keyframes gradient-flow {
+  /* @keyframes gradient-flow {
     0% {
       background-position: 0% 50%;
     }
     100% {
       background-position: 400% 50%;
     }
-  }
+  } */
 }
 
 /* Floating animation (for all icons) */
@@ -265,7 +265,7 @@
   animation: pulse-once 0.4s ease-in-out;
 }
 
-.em_hero_btn_1 {
+/* .em_hero_btn_1 {
   background-color: #FF671F;
   border-color: #FF671F;
 }
@@ -277,4 +277,4 @@
 .em_hero_btn_3 {
   background-color: #046A38;
   border-color: #046A38;
-}
+} */

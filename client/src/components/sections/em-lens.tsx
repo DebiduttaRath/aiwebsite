@@ -71,8 +71,8 @@ export default function EMLens() {
               h-20 w-20 p-0
               shadow-xl
               hover:shadow-2xl
-              bg-gradient-to-br from-[#FF671F] to-[#046A38]
-              hover:from-[#FF671F]/90 hover:to-[#046A38]/90
+              bg-gradient-to-br from-blue-600 to-purple-600
+              hover:from-blue-700 hover:to-purple-700
               transition-all
               duration-300
               hover:scale-110
@@ -83,7 +83,7 @@ export default function EMLens() {
           >
             <ScanSearch
               style={{ width: "2.5rem", height: "2.5rem" }}
-              className="transition-transform group-hover:rotate-12 text-white"
+              className="transition-transform group-hover:rotate-12"
             />
             <span className="sr-only">AI Assistant</span>
           </Button>
