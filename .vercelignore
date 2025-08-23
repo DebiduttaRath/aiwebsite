@@ -1,0 +1,24 @@
+# Exclude development files
+.devcontainer/
+.github/
+.idea/
+.vscode/
+
+# Exclude local environment files
+.env
+.env.local
+.env.development
+
+# Exclude build artifacts (Vercel builds these itself)
+dist-server/
+node_modules/
+
+# Exclude logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Exclude OS files
+.DS_Store
+Thumbs.db

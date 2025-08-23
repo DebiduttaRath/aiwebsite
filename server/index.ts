@@ -1,6 +1,15 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes.js";
 import { setupVite, serveStatic, log } from "./vite";
+import dotenv from "dotenv";
+
+// Load environment variables from .env file in development
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+  console.log("✅ Development environment - .env file loaded");
+} else {
+  console.log("✅ Production environment - using Vercel environment variables");
+}
 
 const app = express();
 app.use(express.json());

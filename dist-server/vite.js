@@ -29,7 +29,13 @@ var vite_config_default = defineConfig({
   root: path.resolve(import.meta.dirname, "client"),
   build: {
     outDir: path.resolve(import.meta.dirname, "dist"),
-    emptyOutDir: true
+    emptyOutDir: true,
+    // For Vercel deployment
+    rollupOptions: {
+      input: {
+        main: path.resolve(import.meta.dirname, "client", "index.html")
+      }
+    }
   },
   server: {
     fs: {
@@ -77,7 +83,7 @@ async function setupVite(app, server) {
       const clientTemplate = path2.resolve(
         import.meta.dirname,
         "..",
-        // "client",
+        "client",
         "index.html"
       );
       let template = await fs.promises.readFile(clientTemplate, "utf-8");
@@ -94,7 +100,7 @@ async function setupVite(app, server) {
   });
 }
 function serveStatic(app) {
-  const distPath = path2.resolve(import.meta.dirname, "..", "dist-server");
+  const distPath = path2.resolve(import.meta.dirname, "..", "dist");
   if (!fs.existsSync(distPath)) {
     throw new Error(
       `Could not find the build directory: ${distPath}, make sure to build the client first`

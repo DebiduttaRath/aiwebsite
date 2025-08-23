@@ -100,10 +100,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
   async function sendContactEmail(formData: any) {
     const { name, email, company, project } = formData;
 
+    console.log("🔧 sendContactEmail called with:", {
+      name,
+      email,
+      company,
+      project,
+    });
+
     // Validate required environment variables
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+      console.error(
+        "❌ Email credentials not configured in environment variables"
+      );
+      console.log("EMAIL_USER:", process.env.EMAIL_USER ? "Set" : "Not set");
+      console.log(
+        "EMAIL_PASSWORD:",
+        process.env.EMAIL_PASSWORD ? "Set" : "Not set"
+      );
       throw new Error("Email credentials not configured");
     }
+
+    console.log("✅ Email credentials found in environment variables");
 
     // Create transporter with GoDaddy settings
     const transporter = nodemailer.createTransport({
@@ -116,6 +133,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
       },
     });
 
+    // Test connection first
+    try {
+      console.log("🔧 Testing SMTP connection...");
+      await transporter.verify();
+      console.log("✅ SMTP connection verified");
+    } catch (error) {
+      console.error("❌ SMTP connection failed:", error);
+      throw error;
+    }
+
     // Email content
     const mailOptions = {
       from: process.env.EMAIL_USER,
@@ -123,34 +150,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
       cc: process.env.EMAIL_CC ? process.env.EMAIL_CC.split(",") : [],
       subject: `New Contact Submission: ${name}`,
       html: `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h2 style="color: #2563eb;">New Contact Form Submission</h2>
-        <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f9fafb; width: 120px;"><strong>Name</strong></td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${name}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f9fafb;"><strong>Email</strong></td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${email}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f9fafb;"><strong>Company</strong></td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${
-              company || "Not provided"
-            }</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f9fafb; vertical-align: top;"><strong>Project</strong></td>
-            <td style="padding: 10px; border: 1px solid #ddd; white-space: pre-line;">${project}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; background-color: #f9fafb;"><strong>Submitted At</strong></td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${new Date().toLocaleString()}</td>
-          </tr>
-        </table>
-      </div>
-    `,
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2 style="color: #2563eb;">New Contact Form Submission</h2>
+      <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+        <tr>
+          <td style="padding: 10px; border: 1px solid #ddd; background-color: #f9fafb; width: 120px;"><strong>Name</strong></td>
+          <td style="padding: 10px; border: 1px solid #ddd;">${name}</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px; border: 1px solid #ddd; background-color: #f9fafb;"><strong>Email</strong></td>
+          <td style="padding: 10px; border: 1px solid #ddd;">${email}</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px; border: 1px solid #ddd; background-color: #f9fafb;"><strong>Company</strong></td>
+          <td style="padding: 10px; border: 1px solid #ddd;">${
+            company || "Not provided"
+          }</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px; border: 1px solid #ddd; background-color: #f9fafb; vertical-align: top;"><strong>Project</strong></td>
+          <td style="padding: 10px; border: 1px solid #ddd; white-space: pre-line;">${project}</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px; border: 1px solid #ddd; background-color: #f9fafb;"><strong>Submitted At</strong></td>
+          <td style="padding: 10px; border: 1px solid #ddd;">${new Date().toLocaleString()}</td>
+        </tr>
+      </table>
+    </div>
+  `,
       text: `New Contact Form Submission
 
 Name: ${name}
@@ -161,8 +188,18 @@ Project: ${project}
 Submitted At: ${new Date().toLocaleString()}`,
     };
 
-    // Send email
-    await transporter.sendMail(mailOptions);
+    console.log("📧 Attempting to send email...");
+
+    try {
+      // Send email
+      const info = await transporter.sendMail(mailOptions);
+      console.log("✅ Email sent successfully!");
+      console.log("Message ID:", info.messageId);
+      console.log("Response:", info.response);
+    } catch (error) {
+      console.error("❌ Email sending failed:", error);
+      throw error;
+    }
   }
   const httpServer = createServer(app);
   return httpServer;
