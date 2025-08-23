@@ -10,7 +10,7 @@
     "dev:full": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
     "build": "npm run build:client && npm run build:server",
     "build:client": "vite build",
-    "build:server": "esbuild server/**/*.ts --platform=node --packages=external --bundle --format=esm --outdir=dist-server --loader:.html=text",
+    "build:server": "esbuild server/**/*.ts shared/**/*.ts --platform=node --packages=external --bundle --format=esm --outdir=dist-server",
     "start": "NODE_ENV=production node dist-server/index.js",
     "vercel-build": "npm run build",
     "check": "tsc",

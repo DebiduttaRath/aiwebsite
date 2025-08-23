@@ -1,15 +1,22 @@
 // api/contact.ts
-import { VercelRequest, VercelResponse } from '@vercel/node';
-import { insertContactSubmissionSchema } from '@shared/schema';
-import { z } from 'zod';
-import nodemailer from 'nodemailer';
+import { VercelRequest, VercelResponse } from "@vercel/node";
+import { z } from "zod";
+import nodemailer from "nodemailer";
+
+// Define schema locally instead of importing from @shared/schema
+const contactSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email address"),
+  company: z.string().optional(),
+  project: z.string().min(1, "Project description is required"),
+});
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  if (req.method === 'POST') {
+  if (req.method === "POST") {
     try {
       console.log("Contact form submission received");
 
-      const validatedData = insertContactSubmissionSchema.parse(req.body);
+      const validatedData = contactSchema.parse(req.body);
 
       // Send email notification
       try {
@@ -25,9 +32,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         submission: {
           ...validatedData,
           id: Math.random().toString(36).substr(2, 9),
-          createdAt: new Date().toISOString()
+          createdAt: new Date().toISOString(),
         },
-        message: "Message sent successfully! We will get back to you within 24 hours.",
+        message:
+          "Message sent successfully! We will get back to you within 24 hours.",
       });
     } catch (error) {
       console.error("Contact form error:", error);
@@ -41,7 +49,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         res.status(500).json({
           success: false,
           error: "Internal server error",
-          message: "Sorry, there was an error sending your message. Please try again later.",
+          message:
+            "Sorry, there was an error sending your message. Please try again later.",
         });
       }
     }
@@ -88,7 +97,9 @@ async function sendContactEmail(formData: any) {
         </tr>
         <tr>
           <td style="padding: 10px; border: 1px solid #ddd; background-color: #f9fafb;"><strong>Company</strong></td>
-          <td style="padding: 10px; border: 1px solid #ddd;">${company || "Not provided"}</td>
+          <td style="padding: 10px; border: 1px solid #ddd;">${
+            company || "Not provided"
+          }</td>
         </tr>
         <tr>
           <td style="padding: 10px; border: 1px solid #ddd; background-color: #f9fafb; vertical-align: top;"><strong>Project</strong></td>
@@ -108,7 +119,7 @@ Email: ${email}
 Company: ${company || "Not provided"}
 Project: ${project}
 
-Submitted At: ${new Date().toLocaleString()}`
+Submitted At: ${new Date().toLocaleString()}`,
   };
 
   await transporter.sendMail(mailOptions);
