@@ -382,7 +382,12 @@ function serveStatic(app2) {
 
 // server/index.ts
 import dotenv from "dotenv";
-dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+  console.log("\u2705 Development environment - .env file loaded");
+} else {
+  console.log("\u2705 Production environment - using Vercel environment variables");
+}
 var app = express2();
 app.use(express2.json());
 app.use(express2.urlencoded({ extended: false }));
@@ -423,16 +428,6 @@ app.use((req, res, next) => {
   } else {
     serveStatic(app);
   }
-  const port = parseInt(process.env.PORT || "8081", 10);
-  server.listen(
-    {
-      port,
-      host: "0.0.0.0"
-    },
-    () => {
-      log(`serving on port ${port}`);
-    }
-  );
 })();
 var index_default = app;
 export {
