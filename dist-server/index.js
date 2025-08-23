@@ -349,7 +349,7 @@ app.use(express2.urlencoded({ extended: false }));
 app.use((req, res, next) => {
   const start = Date.now();
   const path3 = req.path;
-  let capturedJsonResponse = void 0;
+  let capturedJsonResponse;
   const originalResJson = res.json;
   res.json = function(bodyJson, ...args) {
     capturedJsonResponse = bodyJson;
@@ -383,16 +383,6 @@ app.use((req, res, next) => {
   } else {
     serveStatic(app);
   }
-  const port = parseInt(process.env.PORT || "8081", 10);
-  server.listen(
-    {
-      port,
-      host: "0.0.0.0"
-    },
-    () => {
-      log(`serving on port ${port}`);
-    }
-  );
 })();
 var index_default = app;
 export {
