@@ -15,12 +15,15 @@
     ],
     "routes": [
         {
-            "src": "/api/contact",
-            "dest": "/api/contact.ts"
+            "src": "^/api/contact$",
+            "dest": "api/contact.ts"
         },
         {
-            "src": "/(.*)",
-            "dest": "/dist/$1"
+            "handle": "filesystem"
+        },
+        {
+            "src": "/.*",
+            "dest": "/index.html"
         }
     ]
 }
