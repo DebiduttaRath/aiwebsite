@@ -40,8 +40,10 @@ export default function MLAppsModal({
             <DialogTitle className="flex items-center gap-3">
               <span className="text-2xl">{app.icon}</span>
               <div>
-                <h2 className="text-xl font-bold">{app.title}</h2>
-                <p className="text-sm font-normal">{app.description}</p>
+                <h2 className="text-xl font-bold">
+                  <span className="gradient-text">Earthminds</span> {app.title}
+                </h2>
+                {/* <p className="text-sm font-normal">{app.description}</p> */}
               </div>
             </DialogTitle>
 

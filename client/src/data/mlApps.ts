@@ -12,7 +12,7 @@ export interface MLApp {
 export const mlApps: MLApp[] = [
   {
     id: "earthmind-lens",
-    title: "EarthMinds Lens",
+    title: "Lens",
     description:
       "Computer vision application for image analysis and object detection",
     url: "https://earthmind-lens.streamlit.app/?embed=true&embed_options=disable_scrolling=true&hide_footer=true",
@@ -23,7 +23,7 @@ export const mlApps: MLApp[] = [
   },
   {
     id: "earthminds-quantum",
-    title: "Earthminds Quantum",
+    title: "Quantum",
     description:
       "A next-gen platform that turns noisy data into clarity through intelligent cleaning and visualization",
     url: "https://dataplatform.earthminds.ai/",

@@ -157,8 +157,8 @@ export default function MLAppsGallery() {
               </div>
 
               {/* Title & Description */}
-              <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
-                {app.title}
+              <h3 className="text-xl font-semibold text-gray-900 mb-2 transition-colors">
+                <span className="gradient-text">Earthminds</span> {app.title}
               </h3>
               <p className="text-gray-600 mb-4 text-sm leading-relaxed">
                 {app.description}
