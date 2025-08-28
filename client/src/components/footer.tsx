@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Send, Facebook, BadgeX, Linkedin } from "lucide-react";
+import { Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
+import { useLocation, Link } from "wouter";
 
+// Socials unchanged
 const socials = [
   {
     name: "X",
@@ -33,15 +35,29 @@ const socials = [
   },
 ];
 
+// Types to mirror Navigation behavior
+interface LinkBase {
+  id: string;
+  label: string;
+}
+interface RouteLink extends LinkBase {
+  type: "route";
+  path: string;
+}
+interface SectionLink extends LinkBase {
+  type: "section";
+}
+type FooterLink = RouteLink | SectionLink;
+
 export default function Footer() {
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const [location, setLocation] = useLocation();
 
   const newsletterMutation = useMutation({
-    mutationFn: async (email: string) => {
-      return apiRequest("POST", "/api/newsletter", { email });
-    },
+    mutationFn: async (email: string) =>
+      apiRequest("POST", "/api/newsletter", { email }),
     onSuccess: () => {
       toast({
         title: "Subscribed!",
@@ -67,11 +83,32 @@ export default function Footer() {
   };
 
   const scrollToSection = (sectionId: string) => {
+    // If not on home, go to home with hash (matches Navigation.tsx behavior)
+    if (location !== "/") {
+      setLocation(`/#${sectionId}`);
+      return;
+    }
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
+
+  const navigateToPage = (path: string) => setLocation(path);
+
+  // Updated Quick Links:
+  // - Home → route "/"
+  // - About → route "/about"
+  // - Services → Products (route "/products")
+  const quickLinks: FooterLink[] = [
+    { id: "home", label: "Home", type: "route", path: "/" },
+    { id: "about", label: "About Us", type: "route", path: "/about" },
+    { id: "products", label: "Products", type: "route", path: "/products" },
+    // If you want section links later, add like:
+    // { id: "tech", label: "Technology", type: "section" },
+  ];
+
+  const isRoute = (l: FooterLink): l is RouteLink => l.type === "route";
 
   return (
     <footer className="bg-slate-900 border-t border-slate-800">
@@ -105,16 +142,29 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {["home", "about", "services"].map((item) => (
-                <li key={item}>
-                  <button
-                    onClick={() => scrollToSection(item)}
-                    className="text-slate-400 hover:text-white transition-colors"
-                  >
-                    {item.charAt(0).toUpperCase() + item.slice(1)}
-                  </button>
-                </li>
-              ))}
+              {quickLinks.map((item) =>
+                isRoute(item) ? (
+                  <li key={item.id}>
+                    <Link href={item.path}>
+                      <button
+                        onClick={() => navigateToPage(item.path)}
+                        className="text-slate-400 hover:text-white transition-colors"
+                      >
+                        {item.label}
+                      </button>
+                    </Link>
+                  </li>
+                ) : (
+                  <li key={item.id}>
+                    <button
+                      onClick={() => scrollToSection(item.id)}
+                      className="text-slate-400 hover:text-white transition-colors"
+                    >
+                      {item.label}
+                    </button>
+                  </li>
+                )
+              )}
             </ul>
           </div>
 

@@ -1,29 +1,38 @@
 import bgVideo from "../../assets/hero_bg_video.mp4";
+import { useLocation } from "wouter";
 
 export default function Hero() {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+  const [location, setLocation] = useLocation();
+
+  const handleButtonAction = (action: string) => {
+    if (action.startsWith("/")) {
+      // It's a route
+      setLocation(action);
+    } else {
+      // It's a section to scroll to
+      const element = document.getElementById(action);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     }
   };
 
   const buttonData = [
     {
       text: "Build With Us",
-      onClick: "contact",
+      action: "/products",
       // className: "em_hero_btn_1 text-white",
       className: "bg-blue-600 hover:bg-blue-700 text-white border-transparent",
     },
     {
       text: "See Our Work",
-      onClick: "video-odyssey",
+      action: "video-odyssey",
       // className: "em_hero_btn_2 border-white bg-white",
       className: "border-white hover:bg-white hover:text-slate-900 text-white",
     },
     {
       text: "Talk to an Expert",
-      onClick: "contact",
+      action: "contact",
       // className: "em_hero_btn_3 text-white",
       className:
         "border-cyan-400 hover:bg-cyan-400 hover:text-slate-900 text-cyan-400",
@@ -94,7 +103,7 @@ export default function Hero() {
             {buttonData.map((button, index) => (
               <button
                 key={index}
-                onClick={() => scrollToSection(button.onClick)}
+                onClick={() => handleButtonAction(button.action)}
                 className={`px-8 py-4 rounded-lg transform hover:scale-105 transition-all duration-200 font-semibold text-lg border-2 ${button.className}`}
               >
                 {button.text}

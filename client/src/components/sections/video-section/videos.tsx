@@ -11,6 +11,13 @@ export default function Videos() {
   const videos: VideoItem[] = [
     {
       id: 1,
+      title: "DJ",
+      thumbnail: "/video_preview/demo_dj.png",
+      videoUrl: "/work_videos/demo_dj.webm",
+      description: "Play music tunes through hand gestures",
+    },
+    {
+      id: 2,
       title: "AirVisions",
       thumbnail: "/video_preview/demo_air_drawing.png",
       videoUrl: "/work_videos/demo_air_drawing.mp4",
@@ -18,28 +25,28 @@ export default function Videos() {
         "Turning invisible ideas into fluid, limitless sketches in motion.",
     },
     {
-      id: 2,
+      id: 3,
       title: "Video Object Detector",
       thumbnail: "/video_preview/demo_video_object_detection.png",
       videoUrl: "/work_videos/demo_video_object_detection.mp4",
       description: "Identification of real world objects from video",
     },
     {
-      id: 3,
+      id: 4,
       title: "Human Pose Detector",
       thumbnail: "/video_preview/demo_pose_detection.png",
       videoUrl: "/work_videos/demo_pose_detection.mp4",
       description: "Identification of human movements",
     },
     {
-      id: 4,
+      id: 5,
       title: "Image Object Detector",
       thumbnail: "/video_preview/demo_image_object_detection.png",
       videoUrl: "/work_videos/demo_image_object_detection.mp4",
       description: "Identification of real world objects from image",
     },
     {
-      id: 5,
+      id: 6,
       title: "Video Object Detector",
       thumbnail: "/video_preview/demo_video_object_detection_02.png",
       videoUrl: "/work_videos/demo_video_object_detection_02.mp4",

@@ -57,7 +57,7 @@ export default function EMAssistant() {
 
   useEffect(() => {
     if (!open || !iframeRef.current) return;
-    iframeRef.current.src = `https://earthminds-ai-assistant.streamlit.app/?embed=true&embed_options=disable_scrolling=true&hide_footer=true&embedded=true&hide_streamlit_footer=true#noFooter=1&hideFooter=1`;
+    iframeRef.current.src = `https://assistant.earthminds.ai/`;
   }, [open]);
 
   return (
@@ -68,7 +68,7 @@ export default function EMAssistant() {
             variant="default"
             className="
               rounded-full 
-              h-20 w-20 p-0
+              h-16 w-16 p-0
               shadow-xl
               hover:shadow-2xl
               bg-gradient-to-br from-blue-600 to-purple-600
@@ -138,7 +138,7 @@ export default function EMAssistant() {
                 {!hasExpired && (
                   <iframe
                     ref={iframeRef}
-                    src="https://earthminds-ai-assistant.streamlit.app/?embed=true"
+                    src="https://assistant.earthminds.ai/"
                     className="absolute top-0 left-0 w-full h-full border-none"
                     title="EarthMinds AI Assistant"
                     loading="eager"
@@ -146,15 +146,6 @@ export default function EMAssistant() {
                   />
                 )}
               </div>
-
-              <div
-                className="
-                absolute bottom-0 left-0 right-0 
-                h-[40px] bg-background z-10 
-                pointer-events-none
-                bg-gradient-to-t from-background to-transparent
-              "
-              />
             </div>
           </div>
         </DialogContent>
