@@ -3,7 +3,7 @@ export interface MLApp {
   title: string;
   description: string;
   url: string;
-  category: string;
+  category: string[];
   icon: string;
   color: string;
   isStreamlit: boolean;
@@ -16,7 +16,7 @@ export const mlApps: MLApp[] = [
     description:
       "Computer vision application for image analysis and object detection",
     url: "https://earthmind-lens.streamlit.app/?embed=true&embed_options=disable_scrolling=true&hide_footer=true",
-    category: "Computer Vision",
+    category: ["Computer Vision", "NLP"],
     icon: "🔍",
     color: "blue",
     isStreamlit: true,
@@ -27,7 +27,7 @@ export const mlApps: MLApp[] = [
     description:
       "A next-gen platform that turns noisy data into clarity through intelligent cleaning and visualization",
     url: "https://dataplatform.earthminds.ai/",
-    category: "Data Analytics",
+    category: ["Data Analytics"],
     icon: "📝",
     color: "green",
     isStreamlit: false,

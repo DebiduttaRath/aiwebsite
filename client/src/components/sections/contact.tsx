@@ -211,14 +211,14 @@ export default function Contact() {
             </form>
           </Form>
 
-          <div className="text-center mt-8">
+          {/* <div className="text-center mt-8">
             <button
               onClick={() => scrollToSection("contact")}
               className="border-2 border-cyan-400 text-cyan-400 px-8 py-3 rounded-lg hover:bg-cyan-400 hover:text-slate-900 transition-all duration-200 font-semibold"
             >
               Book a Free Discovery Call
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

@@ -15,7 +15,7 @@ export default function MLAppsGallery() {
   const filteredApps =
     selectedCategory === "All"
       ? mlApps
-      : mlApps.filter((app) => app.category === selectedCategory);
+      : mlApps.filter((app) => app.category.includes(selectedCategory));
 
   // Timer logic
   useEffect(() => {
@@ -79,7 +79,7 @@ export default function MLAppsGallery() {
           <RocketLaunchIcon className="h-10 w-10 text-slate-900" />
         </div>
         <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
-          Explore Earthminds.ai Universe
+          Explore Earthminds AI Universe
         </h2>
         <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
           Interactive machine learning tools powered by EarthMinds.ai. Each
@@ -174,7 +174,7 @@ export default function MLAppsGallery() {
                   transition-colors duration-300
                 `}
                 >
-                  {app.category}
+                  {app.category.join(" / ")}
                 </span>
 
                 {/* Play Button */}
